@@ -24,7 +24,9 @@ public class RemoteCodeExecution {
         try {
             // Casting the result of readObject() occurs after the deserialization process ends
             // which make it possible to read any object and can lead to gadget chain attacks
-            return (Book) ois.readObject();
+            Object o = ois.readObject();
+            o.toString();
+            return (Book) o;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
